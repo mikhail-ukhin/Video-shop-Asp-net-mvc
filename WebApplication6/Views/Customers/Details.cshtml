@@ -1,0 +1,15 @@
+﻿@model WebApplication6.Models.Customer
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Name</h2>
+<ul>
+    <li><b>Membership type:</b> @Model.MembershipType.Name</li>
+
+    @if (Model.Birthdate.HasValue)
+    {
+        <li><b>Birthdate:</b> @Model.Birthdate.Value.ToShortDateString()</li>
+    }
+    
+</ul>

@@ -5,63 +5,73 @@ using System.Web;
 using System.Web.Mvc;
 using WebApplication6.Models;
 using WebApplication6.ViewModels;
+using System.Data.Entity;
 
 namespace WebApplication6.Controllers
 {
     public class MoviesController : Controller
     {
-        // GET: Movies/Random
-        public ActionResult Random()
+
+        private ApplicationDbContext _context;
+
+        public MoviesController()
         {
-            var movie = new Movie { Name = "Shrek!" };
+            this._context = new ApplicationDbContext();
+        }
 
-            //return Content("Hi dude");
-            //return HttpNotFound();
-            //return new EmptyResult();
-            //return RedirectToAction("Index", "Home", new {page = 1, sortBy = "name"});
-            //return JavaScript("<script>alert(1)</script>");
 
-            //ViewData["Movie"] = movie;
-            //ViewBag.Movie = movie;
-            var customers = new List<Customer>
+        protected override void Dispose(bool disposing)
+        {
+            _context?.Dispose();
+            base.Dispose(disposing);
+        }
+
+        // GET: Movies
+        public ActionResult Index()
+        {
+            var movies = _context.Movies.Include(m => m.Genre).ToList();
+
+            return View(movies);
+
+        }
+
+        public ActionResult Details(int id)
+        {
+            var movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
+
+            if (movie == null)
+                return HttpNotFound();
+
+            return View(movie);
+        }
+
+        public ActionResult New()
+        {
+            var viewModel = new MovieFormViewModel
             {
-                new Customer {Name = "Bobby"},
-                new Customer {Name = "Cristy"},
-                new Customer {Name = "Robby"},
-                new Customer {Name = "Mattew"},
-            };
-;
-            var viewModel = new RandomMovieViewModel
-            {
-                Movie = movie,
-                Customers = customers
+                Genres = _context.Genres.ToList()
             };
 
             return View(viewModel);
-
         }
 
-        public ActionResult Edit(int id)
+        [HttpPost]
+        public ActionResult New(Movie movie)
         {
-            return Content("id=" + id);
+            var movieInDb = _context.Movies.SingleOrDefault(m => m.Id == movie.Id);
+
+            if (movieInDb == null)
+            {
+                _context.Movies.Add(movie);
+                _context.SaveChanges();
+
+                return RedirectToAction("Index", "Movies");
+            }
+
+            return View();
         }
 
-        public ActionResult Index(int? pageIndex, string sortBy)
-        {
-            if (!pageIndex.HasValue)
-                pageIndex = 1;
-
-            if (string.IsNullOrEmpty(sortBy))
-                sortBy = "Name";
-
-            return Content($"pageIndex={pageIndex}&sortBy={sortBy}");
-        }
-
-        [Route("movies/released/{year:int}/{month:regex(\\d{1}):range(1,12)}")]
-        public ActionResult ByReleaseDate(int year, int month)
-        {
-            return Content(year + "/" + month);
-        }
+        
        
     }
 }

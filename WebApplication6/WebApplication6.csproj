@@ -190,19 +190,89 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709090634558_InitialModel.cs" />
+    <Compile Include="Migrations\201709090634558_InitialModel.Designer.cs">
+      <DependentUpon>201709090634558_InitialModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709090907496_AddCustomersDbSet.cs" />
+    <Compile Include="Migrations\201709090907496_AddCustomersDbSet.Designer.cs">
+      <DependentUpon>201709090907496_AddCustomersDbSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709091142480_AddMembershipType.cs" />
+    <Compile Include="Migrations\201709091142480_AddMembershipType.Designer.cs">
+      <DependentUpon>201709091142480_AddMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709091148441_PopulateMembershipTypes.cs" />
+    <Compile Include="Migrations\201709091148441_PopulateMembershipTypes.Designer.cs">
+      <DependentUpon>201709091148441_PopulateMembershipTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709091157472_ApplyAnnotationsOnCustomer.cs" />
+    <Compile Include="Migrations\201709091157472_ApplyAnnotationsOnCustomer.Designer.cs">
+      <DependentUpon>201709091157472_ApplyAnnotationsOnCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709091206169_FixMistakesInCustomerProps.cs" />
+    <Compile Include="Migrations\201709091206169_FixMistakesInCustomerProps.Designer.cs">
+      <DependentUpon>201709091206169_FixMistakesInCustomerProps.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709091253449_AddPropNameToMembershipType.cs" />
+    <Compile Include="Migrations\201709091253449_AddPropNameToMembershipType.Designer.cs">
+      <DependentUpon>201709091253449_AddPropNameToMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709091255109_UpdateCustomersTableWithNameProp.cs" />
+    <Compile Include="Migrations\201709091255109_UpdateCustomersTableWithNameProp.Designer.cs">
+      <DependentUpon>201709091255109_UpdateCustomersTableWithNameProp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709091302324_UpdateCustomersTableWithNameProp1.cs" />
+    <Compile Include="Migrations\201709091302324_UpdateCustomersTableWithNameProp1.Designer.cs">
+      <DependentUpon>201709091302324_UpdateCustomersTableWithNameProp1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709091309200_AddBirthdatePropToCustomer.cs" />
+    <Compile Include="Migrations\201709091309200_AddBirthdatePropToCustomer.Designer.cs">
+      <DependentUpon>201709091309200_AddBirthdatePropToCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709091310333_UpdateCustomersInfoWithBirthDate.cs" />
+    <Compile Include="Migrations\201709091310333_UpdateCustomersInfoWithBirthDate.Designer.cs">
+      <DependentUpon>201709091310333_UpdateCustomersInfoWithBirthDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709091902244_AddGenreTable.cs" />
+    <Compile Include="Migrations\201709091902244_AddGenreTable.Designer.cs">
+      <DependentUpon>201709091902244_AddGenreTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709091908475_AddMovieProps.cs" />
+    <Compile Include="Migrations\201709091908475_AddMovieProps.Designer.cs">
+      <DependentUpon>201709091908475_AddMovieProps.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709091910277_RemoveSomePropsFromMovie.cs" />
+    <Compile Include="Migrations\201709091910277_RemoveSomePropsFromMovie.Designer.cs">
+      <DependentUpon>201709091910277_RemoveSomePropsFromMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709091911310_SeedingGenres.cs" />
+    <Compile Include="Migrations\201709091911310_SeedingGenres.Designer.cs">
+      <DependentUpon>201709091911310_SeedingGenres.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709100657527_AddSomeDataAnotationsOnModelsMovieAndGenre.cs" />
+    <Compile Include="Migrations\201709100657527_AddSomeDataAnotationsOnModelsMovieAndGenre.Designer.cs">
+      <DependentUpon>201709100657527_AddSomeDataAnotationsOnModelsMovieAndGenre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\CustomerFormViewModel.cs" />
+    <Compile Include="ViewModels\MovieFormViewModel.cs" />
     <Compile Include="ViewModels\RandomMovieViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -262,7 +332,13 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Movies\Random.cshtml" />
+    <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Shared\_NavBar.cshtml" />
+    <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\Customers\Details.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
+    <Content Include="Views\Customers\CustomerForm.cshtml" />
+    <Content Include="Views\Movies\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -279,6 +355,56 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201709090634558_InitialModel.resx">
+      <DependentUpon>201709090634558_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709090907496_AddCustomersDbSet.resx">
+      <DependentUpon>201709090907496_AddCustomersDbSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709091142480_AddMembershipType.resx">
+      <DependentUpon>201709091142480_AddMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709091148441_PopulateMembershipTypes.resx">
+      <DependentUpon>201709091148441_PopulateMembershipTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709091157472_ApplyAnnotationsOnCustomer.resx">
+      <DependentUpon>201709091157472_ApplyAnnotationsOnCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709091206169_FixMistakesInCustomerProps.resx">
+      <DependentUpon>201709091206169_FixMistakesInCustomerProps.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709091253449_AddPropNameToMembershipType.resx">
+      <DependentUpon>201709091253449_AddPropNameToMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709091255109_UpdateCustomersTableWithNameProp.resx">
+      <DependentUpon>201709091255109_UpdateCustomersTableWithNameProp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709091302324_UpdateCustomersTableWithNameProp1.resx">
+      <DependentUpon>201709091302324_UpdateCustomersTableWithNameProp1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709091309200_AddBirthdatePropToCustomer.resx">
+      <DependentUpon>201709091309200_AddBirthdatePropToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709091310333_UpdateCustomersInfoWithBirthDate.resx">
+      <DependentUpon>201709091310333_UpdateCustomersInfoWithBirthDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709091902244_AddGenreTable.resx">
+      <DependentUpon>201709091902244_AddGenreTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709091908475_AddMovieProps.resx">
+      <DependentUpon>201709091908475_AddMovieProps.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709091910277_RemoveSomePropsFromMovie.resx">
+      <DependentUpon>201709091910277_RemoveSomePropsFromMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709091911310_SeedingGenres.resx">
+      <DependentUpon>201709091911310_SeedingGenres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709100657527_AddSomeDataAnotationsOnModelsMovieAndGenre.resx">
+      <DependentUpon>201709100657527_AddSomeDataAnotationsOnModelsMovieAndGenre.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
