@@ -11,21 +11,19 @@ namespace WebApplication6.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please enter customer's name")]
         [StringLength(50)]
         public string Name { get; set; }
         public bool IsSubscribedToNewsLetter { get; set; }
         
         [Display(Name = "Date of Birth")]
+        [Min18YearsIfMember]
         public DateTime? Birthdate { get; set; }
-
-
         
         public MembershipType MembershipType { get; set; }
 
-        // Будет интерпретированно как foreign key
         [Display(Name = "Membership Type")]
-        
+        [Required(ErrorMessage = "Please choose membership type")]
         public byte MembershipTypeId { get; set; }
     }
 }

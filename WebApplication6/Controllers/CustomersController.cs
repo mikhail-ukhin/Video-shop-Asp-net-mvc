@@ -48,7 +48,7 @@ namespace WebApplication6.Controllers
         public ActionResult New()
         {
             var membershipTypes = _context.MembershipTypes.ToList();
-            var viewModel = new CustomerFormViewModel { MembershipTypes = membershipTypes };
+            var viewModel = new CustomerFormViewModel { MembershipTypes = membershipTypes, Customer = new Customer()};
 
 
             return View("CustomerForm", viewModel);
@@ -74,8 +74,6 @@ namespace WebApplication6.Controllers
             else
             {
                 var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
-
-                //TryUpdateModel(customerInDb); MS Practice
 
                 customerInDb.Name = customer.Name;
                 customerInDb.Birthdate = customer.Birthdate;
