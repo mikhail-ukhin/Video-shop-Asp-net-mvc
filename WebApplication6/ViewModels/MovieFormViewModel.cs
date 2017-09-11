@@ -10,6 +10,7 @@ namespace WebApplication6.ViewModels
     {
         public Movie Movie { get; set; }
         public IEnumerable<Genre> Genres { get; set; }
+        public bool IsModelNull => Movie == null;
 
     }
 }

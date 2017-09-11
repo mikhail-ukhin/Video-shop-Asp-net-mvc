@@ -11,15 +11,6 @@ namespace WebApplication6.Controllers
 {
     public class CustomersController : Controller
     {
-
-        //private readonly List<Customer> _customers = new List<Customer>
-        //{
-        //    new Customer {Id = 1, Name = "John Wayne"},
-        //    new Customer {Id = 2, Name = "Marta Stuard"},
-        //    new Customer {Id = 3, Name = "Elly Monster"},
-        //    new Customer {Id = 4, Name = "Bobster Harvy"}
-        //};
-
         private ApplicationDbContext _context;
 
         public CustomersController()
@@ -66,6 +57,18 @@ namespace WebApplication6.Controllers
         [HttpPost]
         public ActionResult Save(Customer customer)
         {
+
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new CustomerFormViewModel
+                {
+                    Customer = customer,
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+
+                return View("CustomerForm", viewModel);
+            }
+
             if (customer.Id == 0)
                 _context.Customers.Add(customer);
             else

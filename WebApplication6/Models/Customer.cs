@@ -20,11 +20,12 @@ namespace WebApplication6.Models
         public DateTime? Birthdate { get; set; }
 
 
-
+        
         public MembershipType MembershipType { get; set; }
 
         // Будет интерпретированно как foreign key
         [Display(Name = "Membership Type")]
+        
         public byte MembershipTypeId { get; set; }
     }
 }

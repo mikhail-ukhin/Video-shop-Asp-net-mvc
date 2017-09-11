@@ -15,8 +15,12 @@ namespace WebApplication6.Models
         [StringLength(250)]
         public string Name { get; set; }
 
-        [Required]
         public Genre Genre { get; set; }
+        
+        [Required]
+        [Display(Name = "Genre")]
+        public byte GenreId { get; set; }
+
 
         [Display(Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }

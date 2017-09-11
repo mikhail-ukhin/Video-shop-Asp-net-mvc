@@ -13,5 +13,7 @@ namespace WebApplication6.Models
         [Required]
         [StringLength(255)]
         public string Name { get; set; }
+
+
     }
 }

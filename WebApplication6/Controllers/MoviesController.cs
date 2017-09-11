@@ -52,7 +52,7 @@ namespace WebApplication6.Controllers
                 Genres = _context.Genres.ToList()
             };
 
-            return View(viewModel);
+            return View("MovieForm", viewModel);
         }
 
         [HttpPost]
@@ -62,16 +62,58 @@ namespace WebApplication6.Controllers
 
             if (movieInDb == null)
             {
+                movie.DateAdded = DateTime.Now;
+
                 _context.Movies.Add(movie);
                 _context.SaveChanges();
 
                 return RedirectToAction("Index", "Movies");
             }
 
-            return View();
+            return View("MovieForm");
         }
 
-        
-       
+        public ActionResult Edit(int id)
+        {
+            var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
+
+            if (movie == null)
+                return HttpNotFound();
+
+            var viewModel = new MovieFormViewModel
+            {
+                Movie = movie,
+                Genres = _context.Genres.ToList()
+            };
+
+            return View("MovieForm", viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Movie movie)
+        {
+            if (ModelState.IsValid)
+            {
+                var movieInDb = _context.Movies.Single(m => m.Id == movie.Id);
+
+                movieInDb.Name = movie.Name;
+                movieInDb.Genre = movie.Genre;
+                movieInDb.ReleaseDate = movie.ReleaseDate;
+                movieInDb.NumberInStock = movie.NumberInStock;
+
+                _context.SaveChanges();
+
+                return RedirectToAction("Index", "Movies");
+            }
+
+            var viewModel = new MovieFormViewModel
+            {
+                Movie = movie,
+                Genres = _context.Genres.ToList()
+            };
+
+            return View("MovieForm", viewModel);
+        }
+
     }
 }
