@@ -49,6 +49,7 @@ namespace WebApplication6.Controllers
         {
             var viewModel = new MovieFormViewModel
             {
+                Movie = new Movie(),
                 Genres = _context.Genres.ToList()
             };
 
@@ -56,21 +57,25 @@ namespace WebApplication6.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult New(Movie movie)
         {
-            var movieInDb = _context.Movies.SingleOrDefault(m => m.Id == movie.Id);
-
-            if (movieInDb == null)
+            if (ModelState.IsValid)
             {
-                movie.DateAdded = DateTime.Now;
+                var movieInDb = _context.Movies.SingleOrDefault(m => m.Id == movie.Id);
 
-                _context.Movies.Add(movie);
-                _context.SaveChanges();
+                if (movieInDb == null)
+                {
+                    movie.DateAdded = DateTime.Now;
 
-                return RedirectToAction("Index", "Movies");
+                    _context.Movies.Add(movie);
+                    _context.SaveChanges();
+
+                    return RedirectToAction("Index", "Movies");
+                }
             }
 
-            return View("MovieForm");
+            return View("MovieForm", new MovieFormViewModel { Movie = movie, Genres = _context.Genres.ToList() });
         }
 
         public ActionResult Edit(int id)
@@ -90,6 +95,7 @@ namespace WebApplication6.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(Movie movie)
         {
             if (ModelState.IsValid)

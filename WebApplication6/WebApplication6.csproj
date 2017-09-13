@@ -269,6 +269,10 @@
     <Compile Include="Migrations\201709111609433_AddAttributes.Designer.cs">
       <DependentUpon>201709111609433_AddAttributes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709111909409_AddAttributesToMovie.cs" />
+    <Compile Include="Migrations\201709111909409_AddAttributesToMovie.Designer.cs">
+      <DependentUpon>201709111909409_AddAttributesToMovie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -419,6 +423,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709111609433_AddAttributes.resx">
       <DependentUpon>201709111609433_AddAttributes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709111909409_AddAttributesToMovie.resx">
+      <DependentUpon>201709111909409_AddAttributesToMovie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
