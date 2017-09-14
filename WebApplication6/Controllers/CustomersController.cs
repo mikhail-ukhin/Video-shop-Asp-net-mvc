@@ -11,7 +11,7 @@ namespace WebApplication6.Controllers
 {
     public class CustomersController : Controller
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         public CustomersController()
         {
@@ -48,7 +48,7 @@ namespace WebApplication6.Controllers
         public ActionResult New()
         {
             var membershipTypes = _context.MembershipTypes.ToList();
-            var viewModel = new CustomerFormViewModel { MembershipTypes = membershipTypes, Customer = new Customer()};
+            var viewModel = new CustomerFormViewModel { MembershipTypes = membershipTypes, Customer = new Customer() };
 
 
             return View("CustomerForm", viewModel);

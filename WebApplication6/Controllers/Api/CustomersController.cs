@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using System.Linq;
 using System.Web.Http;
 using WebApplication6.Dtos;
@@ -50,7 +51,7 @@ namespace WebApplication6.Controllers.Api
 
             customerDto.Id = customer.Id;
 
-            return Ok(customerDto);
+            return Created(new Uri(Request.RequestUri + "/" + customer.Id), customerDto);
         }
 
         // PUT /api/customers/1
