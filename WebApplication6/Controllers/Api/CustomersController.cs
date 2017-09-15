@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Http;
 using WebApplication6.Dtos;
 using WebApplication6.Models;
+using System.Data.Entity;
 
 namespace WebApplication6.Controllers.Api
 {
@@ -19,7 +20,10 @@ namespace WebApplication6.Controllers.Api
         // GET /api/customers
         public IHttpActionResult GetCustomers()
         {
-            var customers = _context.Customers.ToList().Select(Mapper.Map<Customer,CustomerDto>);
+            var customers = _context.Customers.
+                Include(c => c.MembershipType).
+                ToList().
+                Select(Mapper.Map<Customer, CustomerDto>);
 
             return Ok(customers);
         }

@@ -27,9 +27,7 @@ namespace WebApplication6.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
-
-            return View(customers);
+            return View();
         }
 
 
@@ -48,7 +46,7 @@ namespace WebApplication6.Controllers
         public ActionResult New()
         {
             var membershipTypes = _context.MembershipTypes.ToList();
-            var viewModel = new CustomerFormViewModel { MembershipTypes = membershipTypes, Customer = new Customer() };
+            var viewModel = new CustomerFormViewModel { MembershipTypes = membershipTypes };
 
 
             return View("CustomerForm", viewModel);
@@ -61,9 +59,8 @@ namespace WebApplication6.Controllers
 
             if (!ModelState.IsValid)
             {
-                var viewModel = new CustomerFormViewModel
+                var viewModel = new CustomerFormViewModel(customer)
                 {
-                    Customer = customer,
                     MembershipTypes = _context.MembershipTypes.ToList()
                 };
 
@@ -94,7 +91,7 @@ namespace WebApplication6.Controllers
             if (customer == null)
                 return HttpNotFound();
 
-            var viewModel = new CustomerFormViewModel { Customer = customer, MembershipTypes = _context.MembershipTypes.ToList() };
+            var viewModel = new CustomerFormViewModel(customer) { MembershipTypes = _context.MembershipTypes.ToList() };
 
             return View("CustomerForm", viewModel);
         }

@@ -10,11 +10,10 @@ namespace WebApplication6
         {
             CreateMap<Customer, CustomerDto>();
             CreateMap<Movie, MovieDto>();
+            CreateMap<MembershipType, MembershipTypeDto>();
 
             CreateMap<CustomerDto, Customer>().ForMember(c => c.Id, opt => opt.Ignore()); // игнорируем Id при выполнении привязки к доменной модели
             CreateMap<MovieDto, Movie>().ForMember(m => m.Id, opt => opt.Ignore());
-
-
         }
     }
 }
