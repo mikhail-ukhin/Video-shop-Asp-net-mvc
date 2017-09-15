@@ -12,11 +12,11 @@ namespace WebApplication6.Controllers
     public class MoviesController : Controller
     {
 
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         public MoviesController()
         {
-            this._context = new ApplicationDbContext();
+            _context = new ApplicationDbContext();
         }
 
 
@@ -47,11 +47,7 @@ namespace WebApplication6.Controllers
 
         public ActionResult New()
         {
-            var viewModel = new MovieFormViewModel
-            {
-                Movie = new Movie(),
-                Genres = _context.Genres.ToList()
-            };
+            var viewModel = new MovieFormViewModel { Genres = _context.Genres.ToList() };
 
             return View("MovieForm", viewModel);
         }
@@ -75,7 +71,7 @@ namespace WebApplication6.Controllers
                 }
             }
 
-            return View("MovieForm", new MovieFormViewModel { Movie = movie, Genres = _context.Genres.ToList() });
+            return View("MovieForm", new MovieFormViewModel(movie) { Genres = _context.Genres.ToList() });
         }
 
         public ActionResult Edit(int id)
@@ -85,9 +81,8 @@ namespace WebApplication6.Controllers
             if (movie == null)
                 return HttpNotFound();
 
-            var viewModel = new MovieFormViewModel
+            var viewModel = new MovieFormViewModel(movie)
             {
-                Movie = movie,
                 Genres = _context.Genres.ToList()
             };
 
@@ -112,9 +107,8 @@ namespace WebApplication6.Controllers
                 return RedirectToAction("Index", "Movies");
             }
 
-            var viewModel = new MovieFormViewModel
+            var viewModel = new MovieFormViewModel(movie)
             {
-                Movie = movie,
                 Genres = _context.Genres.ToList()
             };
 
