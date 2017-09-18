@@ -14,7 +14,8 @@ namespace WebApplication6
             "~/Scripts/bootstrap.js",
             "~/Scripts/respond.js",
             "~/Scripts/datatables/jquery.datatables.js",
-            "~/Scripts/datatables/datatables.bootstrap.js"));
+            "~/Scripts/datatables/datatables.bootstrap.js",
+            "~/Scripts/jquery-ui-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
@@ -33,7 +34,8 @@ namespace WebApplication6
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/datatables/css/datatables.bootstrap.css"));
+                      "~/Content/datatables/css/datatables.bootstrap.css",
+                      "~/Content/themes/base/jquery-ui.css"));
         }
     }
 }

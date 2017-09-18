@@ -22,7 +22,7 @@
     <div class="form-group">
         @{ Html.EnableClientValidation(false); }
         @Html.LabelFor(m => m.Birthdate)
-        @Html.TextBoxFor(m => m.Birthdate, "{0:d MMM yyyy}", new {@class = "form-control"})
+        @Html.TextBoxFor(m => m.Birthdate, "{0:d MMM yyyy}", new {@class = "form-control", id = "birthdate_picker"})
         @Html.ValidationMessageFor(m => m.Birthdate)
         @{ Html.EnableClientValidation(true); }
     </div>
@@ -41,5 +41,14 @@
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        
+        $(document).ready(
+            function() {
+                $("#birthdate_picker").datepicker();
+            }
+        );
+    </script>
 }
 
