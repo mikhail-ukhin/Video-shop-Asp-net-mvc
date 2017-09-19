@@ -7,6 +7,7 @@ using System.Web.Http;
 using AutoMapper;
 using WebApplication6.Dtos;
 using WebApplication6.Models;
+using System.Data.Entity;
 
 namespace WebApplication6.Controllers.Api
 {
@@ -23,7 +24,7 @@ namespace WebApplication6.Controllers.Api
         [HttpGet]
         public IHttpActionResult GetMovies()
         {
-            var movies = _context.Movies.ToList().Select(Mapper.Map<Movie, MovieDto>); // Каждый Movie преобразовываем на выходе в MovieDto
+            var movies = _context.Movies.Include(m => m.Genre).ToList().Select(Mapper.Map<Movie, MovieDto>); // Каждый Movie преобразовываем на выходе в MovieDto
 
             return Ok(movies);
         }

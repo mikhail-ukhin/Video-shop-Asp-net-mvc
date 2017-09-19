@@ -46,7 +46,12 @@
         
         $(document).ready(
             function() {
-                $("#birthdate_picker").datepicker();
+                $("#birthdate_picker").datepicker({
+                    dateFormat: "dd M yy",
+                    changeYear: true,
+                    changeMonth: true,
+                    yearRange: "c-100:c"
+                });
             }
         );
     </script>

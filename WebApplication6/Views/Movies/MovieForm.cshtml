@@ -17,7 +17,7 @@
         @{ Html.EnableClientValidation(false); }
 
         @Html.LabelFor(m => m.ReleaseDate)
-        @Html.TextBoxFor(m => m.ReleaseDate, "{0:d MMM yyyy}", new {@class = "form-control"})
+        @Html.TextBoxFor(m => m.ReleaseDate, "{0:d MMM yyyy}", new {@class = "form-control", id = "releaseDate_picker" })
         @Html.ValidationMessageFor(m => m.ReleaseDate)
 
         @{ Html.EnableClientValidation(true); }
@@ -43,4 +43,17 @@
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
+
+<script>
+
+        $(document).ready(
+            function() {
+                $("#releaseDate_picker").datepicker({
+                    dateFormat: "dd M yy",
+                    changeYear: true,
+                    yearRange: "c-1000:c"
+                });
+            }
+        );
+</script>
 }
