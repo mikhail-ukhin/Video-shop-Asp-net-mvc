@@ -24,7 +24,7 @@ namespace WebApplication6.Controllers.Api
         [HttpGet]
         public IHttpActionResult GetMovies()
         {
-            var movies = _context.Movies.Include(m => m.Genre).ToList().Select(Mapper.Map<Movie, MovieDto>); // Каждый Movie преобразовываем на выходе в MovieDto
+            var movies = _context.Movies.Include(m => m.Genre).ToList().Select(Mapper.Map<Movie, MovieDto>);
 
             return Ok(movies);
         }
