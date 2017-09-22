@@ -43,6 +43,7 @@ namespace WebApplication6.Controllers
             return View(customer);
         }
 
+        [Authorize]
         public ActionResult New()
         {
             var membershipTypes = _context.MembershipTypes.ToList();

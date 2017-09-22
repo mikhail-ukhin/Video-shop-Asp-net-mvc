@@ -22,6 +22,7 @@ namespace WebApplication6.Controllers.Api
 
         // GET /api/movies
         [HttpGet]
+        [Authorize]
         public IHttpActionResult GetMovies()
         {
             var movies = _context.Movies.Include(m => m.Genre).ToList().Select(Mapper.Map<Movie, MovieDto>);
@@ -31,6 +32,7 @@ namespace WebApplication6.Controllers.Api
 
         // GET /api/movies/1
         [HttpGet]
+        [Authorize]
         public IHttpActionResult GetMovie(int id)
         {
             var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
@@ -43,6 +45,7 @@ namespace WebApplication6.Controllers.Api
 
         // POST /api/movies
         [HttpPost]
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public IHttpActionResult CreateMovie(MovieDto movieDto)
         {
             if (!ModelState.IsValid)
@@ -62,6 +65,7 @@ namespace WebApplication6.Controllers.Api
 
         // PUT /api/movies/1
         [HttpPut]
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public IHttpActionResult UpdateMovie(int id, MovieDto movieDto)
         {
             if (!ModelState.IsValid)
@@ -84,6 +88,7 @@ namespace WebApplication6.Controllers.Api
 
         // DELETE /api/movies/1
         [HttpDelete]
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public IHttpActionResult DeleteMovie(int id)
         {
             var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
