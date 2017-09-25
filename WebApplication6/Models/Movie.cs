@@ -30,6 +30,8 @@ namespace WebApplication6.Models
         [Range(1,20)]
         public byte? NumberInStock { get; set; }
 
+        public int NumberAvailable { get; set; }
+
         public DateTime DateAdded { get; set; }
 
     }
