@@ -19,18 +19,14 @@ namespace WebApplication6.Controllers.Api
         [HttpPost]
         public IHttpActionResult CreateNewRentals(NewRentalDto newRental)
         {
-            if (!newRental.MovieIds.Any())
-                return BadRequest("No movie ids have been given");
-
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == newRental.CustomerId);
-
-            if (customer == null)
-                return BadRequest("CustomerId is not valid");
-
+            var customer = _context.Customers.Single(c => c.Id == newRental.CustomerId);
             var movies = _context.Movies.Where(m => newRental.MovieIds.Contains(m.Id)).ToList();
 
             foreach (var movie in movies)
             {
+                if (movie.NumberAvailable < 1)
+                    return BadRequest($"Movie {movie.Name} is not available");
+
                 movie.NumberAvailable--;
 
                 var rental = new Rental
