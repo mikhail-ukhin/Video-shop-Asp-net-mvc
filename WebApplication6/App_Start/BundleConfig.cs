@@ -15,7 +15,8 @@ namespace WebApplication6
             "~/Scripts/respond.js",
             "~/Scripts/datatables/jquery.datatables.js",
             "~/Scripts/datatables/datatables.bootstrap.js",
-            "~/Scripts/jquery-ui-{version}.js"));
+            "~/Scripts/jquery-ui-{version}.js",
+            "~/Scripts/typeahead.bundle*"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
