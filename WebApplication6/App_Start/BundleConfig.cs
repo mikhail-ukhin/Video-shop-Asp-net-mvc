@@ -16,7 +16,8 @@ namespace WebApplication6
             "~/Scripts/datatables/jquery.datatables.js",
             "~/Scripts/datatables/datatables.bootstrap.js",
             "~/Scripts/jquery-ui-{version}.js",
-            "~/Scripts/typeahead.bundle*"));
+            "~/Scripts/typeahead.bundle*",
+            "~/Scripts/toastr.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
@@ -36,7 +37,9 @@ namespace WebApplication6
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/datatables/css/datatables.bootstrap.css",
-                      "~/Content/themes/base/jquery-ui.css"));
+                      "~/Content/themes/base/jquery-ui.css",
+                      "~/Content/typeahead.css",
+                      "~/Content/toastr.css"));
         }
     }
 }

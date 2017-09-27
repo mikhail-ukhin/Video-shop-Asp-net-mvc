@@ -24,7 +24,7 @@ namespace WebApplication6.Controllers.Api
 
             foreach (var movie in movies)
             {
-                if (movie.NumberAvailable == 1)
+                if (movie.NumberAvailable == 0)
                     return BadRequest($"Movie {movie.Name} is not available");
 
                 movie.NumberAvailable--;
